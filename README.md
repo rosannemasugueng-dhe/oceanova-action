@@ -1,4 +1,4 @@
-# OceaNova Action Inc. — Official Corporate Portal
+# OceaNova Action Inc.: Official Corporate Portal
 
 Official institutional website and One Health digital gateway for **OceaNova Action Inc.**
 - **Live Website:** https://github.io
