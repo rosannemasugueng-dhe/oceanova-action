@@ -9,17 +9,14 @@
   --border-subtle: rgba(38, 183, 205, 0.22);
   --shadow-deep: 0 12px 32px rgba(3, 10, 20, 0.55);
 }
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
 html {
   scroll-behavior: smooth;
 }
-
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--bg-abyss);
@@ -28,13 +25,11 @@ body {
   overflow-x: hidden;
   top: 0 !important;
 }
-
 .container {
   width: 92%;
   max-width: 1180px;
   margin: 0 auto;
 }
-
 /*Navigation Bar*/
 .navbar {
   position: sticky;
@@ -45,14 +40,12 @@ body {
   border-bottom: 1px solid var(--border-subtle);
   padding: 0.9rem 0;
 }
-
 .nav-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
 }
-
 .brand {
   display: flex;
   align-items: center;
@@ -60,7 +53,6 @@ body {
   text-decoration: none;
   color: var(--text-pure);
 }
-
 .brand-logo {
   width: 44px;
   height: 44px;
@@ -68,32 +60,27 @@ body {
   object-fit: cover;
   border: 2px solid var(--accent-cyan);
 }
-
 .brand-text {
   display: flex;
   flex-direction: column;
   line-height: 1.1;
 }
-
 .brand-name {
   font-family: 'Playfair Display', serif;
   font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: 0.3px;
 }
-
 .brand-sub {
   font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 2.2px;
   color: var(--accent-cyan);
 }
-
 .nav-links {
   display: flex;
   gap: 1.6rem;
 }
-
 .nav-links a {
   color: var(--text-muted);
   text-decoration: none;
@@ -101,17 +88,14 @@ body {
   font-weight: 500;
   transition: color 0.2s ease;
 }
-
 .nav-links a:hover {
   color: var(--accent-cyan);
 }
-
 .nav-actions {
   display: flex;
   align-items: center;
   gap: 0.8rem;
 }
-
 .menu-toggle {
   display: none;
   background: transparent;
@@ -122,13 +106,11 @@ body {
   font-size: 0.85rem;
   cursor: pointer;
 }
-
 /*Integration of a 130+ language selector*/
 .goog-te-banner-frame.skiptranslate,
 .goog-te-gadget-icon {
   display: none !important;
 }
-
 .goog-te-gadget-simple {
   background-color: var(--bg-surface) !important;
   border: 1px solid var(--border-subtle) !important;
@@ -137,12 +119,10 @@ body {
   font-family: 'Inter', sans-serif !important;
   font-size: 0.8rem !important;
 }
-
 .goog-te-gadget-simple span {
   color: var(--text-pure) !important;
   border: none !important;
 }
-
 /*Hero Section*/
 .hero {
   position: relative;
@@ -151,7 +131,6 @@ body {
               linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-abyss) 100%);
   border-bottom: 1px solid var(--border-subtle);
 }
-
 .badge-institutionnel {
   display: inline-block;
   background: rgba(38, 183, 205, 0.12);
@@ -163,7 +142,6 @@ body {
   font-weight: 600;
   margin-bottom: 1.5rem;
 }
-
 .hero h1 {
   font-family: 'Playfair Display', serif;
   font-size: clamp(2rem, 4vw, 3.2rem);
@@ -171,21 +149,18 @@ body {
   max-width: 880px;
   margin-bottom: 1.3rem;
 }
-
 .hero-lead {
   font-size: 1.08rem;
   color: var(--text-muted);
   max-width: 780px;
   margin-bottom: 2.2rem;
 }
-
 .cta-group {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 3.5rem;
 }
-
 .btn {
   display: inline-block;
   padding: 0.9rem 1.6rem;
@@ -196,33 +171,27 @@ body {
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
-
 .btn-primary {
   background: linear-gradient(135deg, var(--accent-cyan), var(--accent-royal));
   color: var(--text-pure);
   box-shadow: 0 6px 20px rgba(38, 183, 205, 0.28);
 }
-
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 26px rgba(38, 183, 205, 0.42);
 }
-
 .btn-secondary {
   background: rgba(255, 255, 255, 0.04);
   color: var(--text-pure);
   border: 1px solid var(--accent-cyan);
 }
-
 .btn-secondary:hover {
   background: rgba(38, 183, 205, 0.14);
 }
-
 .full-width {
   width: 100%;
   margin-top: 1.2rem;
 }
-
 .hero-metrics {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -230,39 +199,32 @@ body {
   padding-top: 2rem;
   border-top: 1px solid var(--border-subtle);
 }
-
 .metric-item {
   display: flex;
   flex-direction: column;
 }
-
 .metric-value {
   font-size: 1.65rem;
   font-weight: 700;
   color: var(--accent-cyan);
 }
-
 .metric-label {
   font-size: 0.88rem;
   color: var(--text-muted);
 }
-
 /*General Sections & Maps*/
 .section {
   padding: 4.5rem 0;
 }
-
 .section-alt {
   background-color: var(--bg-surface);
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
 }
-
 .section-header {
   max-width: 720px;
   margin-bottom: 2.8rem;
 }
-
 .section-kicker {
   display: block;
   text-transform: uppercase;
@@ -272,23 +234,19 @@ body {
   color: var(--accent-cyan);
   margin-bottom: 0.5rem;
 }
-
 .section-header h2 {
   font-family: 'Playfair Display', serif;
   font-size: clamp(1.65rem, 3vw, 2.3rem);
   margin-bottom: 0.6rem;
 }
-
 .section-header p {
   color: var(--text-muted);
 }
-
 .grid-3, .roadmap-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
 }
-
 .card, .roadmap-step, .pwa-box, .ceo-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
@@ -296,18 +254,15 @@ body {
   padding: 1.8rem;
   box-shadow: var(--shadow-deep);
 }
-
 .card h3, .roadmap-step h3, .pwa-box h3 {
   font-size: 1.15rem;
   margin-bottom: 0.75rem;
   color: var(--text-pure);
 }
-
 .card p, .roadmap-step p, .pwa-box p {
   color: var(--text-muted);
   font-size: 0.95rem;
 }
-
 .step-tag {
   display: inline-block;
   font-size: 0.76rem;
@@ -317,14 +272,12 @@ body {
   letter-spacing: 1px;
   margin-bottom: 0.6rem;
 }
-
 /* 9 SDGs Grid*/
 .sdg-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.1rem;
 }
-
 .sdg-card {
   background: var(--bg-abyss);
   border: 1px solid var(--border-subtle);
@@ -332,24 +285,20 @@ body {
   border-radius: 8px;
   padding: 1.2rem;
 }
-
 .sdg-num {
   font-size: 0.78rem;
   font-weight: 700;
   color: var(--accent-cyan);
   letter-spacing: 1px;
 }
-
 .sdg-card h4 {
   margin: 0.25rem 0 0.45rem;
   font-size: 1rem;
 }
-
 .sdg-card p {
   font-size: 0.86rem;
   color: var(--text-muted);
 }
-
 /*Digital Passport & PWA*/
 .split-layout {
   display: grid;
@@ -357,57 +306,48 @@ body {
   gap: 2.2rem;
   align-items: center;
 }
-
 .split-text h2 {
   font-family: 'Playfair Display', serif;
   font-size: 2rem;
   margin-bottom: 1rem;
 }
-
 .split-text p {
   color: var(--text-muted);
   margin-bottom: 1.2rem;
 }
-
 .clean-list {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
-
 .clean-list li {
   padding-left: 1.2rem;
   border-left: 2px solid var(--accent-cyan);
   color: var(--text-muted);
   font-size: 0.94rem;
 }
-
 /*CEO Profile*/
 .ceo-card {
   border-left: 5px solid var(--accent-cyan);
 }
-
 .ceo-role {
   color: var(--accent-cyan);
   font-weight: 600;
   margin: 0.4rem 0 1rem;
 }
-
 /*Footer*/
 .footer {
   background: #040d1a;
   border-top: 1px solid var(--border-subtle);
   padding-top: 3.5rem;
 }
-
 .footer-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 2rem;
   padding-bottom: 2.5rem;
 }
-
 .footer-logo {
   width: 48px;
   height: 48px;
@@ -415,33 +355,27 @@ body {
   margin-bottom: 0.8rem;
   border: 1px solid var(--accent-cyan);
 }
-
 .footer-brand p, .footer-links span {
   font-size: 0.88rem;
   color: var(--text-muted);
 }
-
 .footer-links {
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
 }
-
 .footer-links h4 {
   font-size: 0.95rem;
   margin-bottom: 0.3rem;
 }
-
 .footer-links a {
   color: var(--text-muted);
   text-decoration: none;
   font-size: 0.88rem;
 }
-
 .footer-links a:hover {
   color: var(--accent-cyan);
 }
-
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding: 1.2rem 0;
@@ -449,13 +383,11 @@ body {
   font-size: 0.82rem;
   color: var(--text-muted);
 }
-
 /*Mobile & Tablet Compatibility*/
 @media (max-width: 860px) {
   .menu-toggle {
     display: inline-block;
   }
-
   .nav-links {
     display: none;
     position: absolute;
@@ -467,8 +399,19 @@ body {
     padding: 1.2rem 5%;
     border-bottom: 1px solid var(--border-subtle);
   }
-
   .nav-links.active {
     display: flex;
   }
+}
+/*Translation button*/
+.lang-select {
+  background-color: var(--bg-surface);
+  color: var(--text-pure);
+  border: 1px solid var(--accent-cyan);
+  border-radius: 6px;
+  padding: 0.42rem 0.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
 }
