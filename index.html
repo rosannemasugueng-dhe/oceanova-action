@@ -52,7 +52,106 @@
           <option value="hi">हिन्दी</option>
           <option value="more">+ 130 Langues (Google)</option>
         </select>
-        <div id="google_translate_element" style="display:none;"></div>
+        <!-- Sélecteur Multilingue Universel (130+ Langues) -->
+        <div class="language-switcher">
+          <label for="lang-select" aria-label="Choisir la langue / Select Language">🌐</label>
+          <select id="lang-select" onchange="translateSite(this.value)">
+            <option value="" selected disabled>Langue / Language (130+)</option>
+            <optgroup label="Langues Prioritaires (Afrique & International)">
+              <option value="original">🇬🇧 English (Original)</option>
+              <option value="fr">🇫🇷 Français</option>
+              <option value="rw">🇷🇼 Ikinyarwanda (Kinyarwanda)</option>
+              <option value="sw">🇹🇿 Kiswahili (Swahili)</option>
+              <option value="ar">🇸🇦 العربية (Arabe)</option>
+              <option value="ln">🇨🇩 Lingála</option>
+              <option value="ha">🇳🇬 Hausa</option>
+              <option value="yo">🇳🇬 Yorùbá</option>
+              <option value="ig">🇳🇬 Igbo</option>
+              <option value="am">🇪🇹 አማርኛ (Amharique)</option>
+              <option value="zu">🇿🇦 isiZulu</option>
+              <option value="es">🇪🇸 Español</option>
+              <option value="pt">🇵🇹 Português</option>
+              <option value="zh-CN">🇨🇳 中文 (Chinois)</option>
+              <option value="hi">🇮🇳 हिन्दी (Hindi)</option>
+              <option value="de">🇩🇪 Deutsch</option>
+              <option value="ru">🇷🇺 Русский</option>
+              <option value="ja">🇯🇵 日本語</option>
+              <option value="ko">🇰🇷 한국어</option>
+            </optgroup>
+            <optgroup label="Autres Langues Mondiales (A–Z)">
+              <option value="af">Afrikaans</option>
+              <option value="sq">Shqip (Albanian)</option>
+              <option value="hy">Հայերեն (Armenian)</option>
+              <option value="az">Azərbaycan</option>
+              <option value="bm">Bamanankan (Bambara)</option>
+              <option value="bn">বাংলা (Bengali)</option>
+              <option value="bs">Bosanski</option>
+              <option value="bg">Български</option>
+              <option value="ca">Català</option>
+              <option value="ny">Chichewa</option>
+              <option value="hr">Hrvatski</option>
+              <option value="cs">Čeština</option>
+              <option value="da">Dansk</option>
+              <option value="nl">Nederlands</option>
+              <option value="ee">Eʋegbe (Ewe)</option>
+              <option value="tl">Filipino</option>
+              <option value="fi">Suomi</option>
+              <option value="el">Ελληνικά</option>
+              <option value="gu">ગુજરાતી</option>
+              <option value="ht">Kreyòl Ayisyen</option>
+              <option value="iw">עברית (Hebrew)</option>
+              <option value="hu">Magyar</option>
+              <option value="id">Bahasa Indonesia</option>
+              <option value="it">Italiano</option>
+              <option value="kn">ಕನ್ನಡ</option>
+              <option value="kk">Қазақ</option>
+              <option value="km">ខ្មែរ</option>
+              <option value="ku">Kurdî</option>
+              <option value="lo">ລາວ</option>
+              <option value="lv">Latviešu</option>
+              <option value="lt">Lietuvių</option>
+              <option value="lg">Luganda</option>
+              <option value="mk">Македонски</option>
+              <option value="mg">Malagasy</option>
+              <option value="ms">Bahasa Melayu</option>
+              <option value="ml">മലയാളം</option>
+              <option value="mr">मराठी</option>
+              <option value="mn">Монгол</option>
+              <option value="my">မြန်မာ</option>
+              <option value="ne">नेपाली</option>
+              <option value="no">Norsk</option>
+              <option value="om">Afaan Oromoo</option>
+              <option value="ps">پښتو</option>
+              <option value="fa">فارسی</option>
+              <option value="pl">Polski</option>
+              <option value="pa">ਪੰਜਾਬੀ</option>
+              <option value="ro">Română</option>
+              <option value="sr">Српски</option>
+              <option value="st">Sesotho</option>
+              <option value="sn">ChiShona</option>
+              <option value="sd">سنڌي</option>
+              <option value="si">සිංහල</option>
+              <option value="sk">Slovenčina</option>
+              <option value="sl">Slovenščina</option>
+              <option value="so">Soomaali</option>
+              <option value="sv">Svenska</option>
+              <option value="tg">Тоҷикӣ</option>
+              <option value="ta">தமிழ்</option>
+              <option value="te">తెలుగు</option>
+              <option value="th">ไทย</option>
+              <option value="ti">ትግርኛ (Tigrinya)</option>
+              <option value="ts">Xitsonga</option>
+              <option value="tr">Türkçe</option>
+              <option value="ak">Twi (Akan)</option>
+              <option value="uk">Українська</option>
+              <option value="ur">اردو</option>
+              <option value="uz">Oʻzbek</option>
+              <option value="vi">Tiếng Việt</option>
+              <option value="xh">isiXhosa</option>
+              <option value="yi">ייִדיש</option>
+            </optgroup>
+          </select>
+        </div>
         <button class="menu-toggle" id="menu-toggle" aria-label="Ouvrir le menu">Menu</button>
       </div>
     </div>
