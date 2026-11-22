@@ -1,7 +1,19 @@
 // Initializing the multilingual translation engine (130+ languages)
+document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  }
+});
 function translateSite(targetLang) {
   if (!targetLang || targetLang === 'fr') return;
+
   const baseSiteUrl = 'https://github.io';
+
   if (targetLang === 'original') {
     window.location.href = baseSiteUrl;
     return;
