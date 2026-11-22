@@ -30,7 +30,7 @@ body {
   max-width: 1180px;
   margin: 0 auto;
 }
-/*Navigation Bar*/
+/* Navigation Bar */
 .navbar {
   position: sticky;
   top: 0;
@@ -106,24 +106,33 @@ body {
   font-size: 0.85rem;
   cursor: pointer;
 }
-/*Integration of a 130+ language selector*/
-.goog-te-banner-frame.skiptranslate,
-.goog-te-gadget-icon {
-  display: none !important;
+/* Multilingual Language Switcher (130+ Languages) */
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--accent-cyan);
+  border-radius: 8px;
+  padding: 0.4rem 0.7rem;
 }
-.goog-te-gadget-simple {
-  background-color: var(--bg-surface) !important;
-  border: 1px solid var(--border-subtle) !important;
-  border-radius: 6px !important;
-  padding: 4px 8px !important;
-  font-family: 'Inter', sans-serif !important;
-  font-size: 0.8rem !important;
+.language-switcher select {
+  background: transparent;
+  color: var(--text-pure);
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  max-width: 195px;
 }
-.goog-te-gadget-simple span {
-  color: var(--text-pure) !important;
-  border: none !important;
+.language-switcher select option,
+.language-switcher select optgroup {
+  background-color: var(--bg-abyss);
+  color: var(--text-pure);
 }
-/*Hero Section*/
+/* Hero Section */
 .hero {
   position: relative;
   padding: 5.5rem 0 4.5rem;
@@ -212,7 +221,7 @@ body {
   font-size: 0.88rem;
   color: var(--text-muted);
 }
-/*General Sections & Maps*/
+/* General Sections & Cards */
 .section {
   padding: 4.5rem 0;
 }
@@ -272,7 +281,7 @@ body {
   letter-spacing: 1px;
   margin-bottom: 0.6rem;
 }
-/* 9 SDGs Grid*/
+/* 9 SDGs Grid */
 .sdg-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -299,7 +308,7 @@ body {
   font-size: 0.86rem;
   color: var(--text-muted);
 }
-/*Digital Passport & PWA*/
+/* Digital Passport & PWA */
 .split-layout {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -327,7 +336,7 @@ body {
   color: var(--text-muted);
   font-size: 0.94rem;
 }
-/*CEO Profile*/
+/* CEO Profile */
 .ceo-card {
   border-left: 5px solid var(--accent-cyan);
 }
@@ -336,7 +345,7 @@ body {
   font-weight: 600;
   margin: 0.4rem 0 1rem;
 }
-/*Footer*/
+/* Footer */
 .footer {
   background: #040d1a;
   border-top: 1px solid var(--border-subtle);
@@ -383,7 +392,7 @@ body {
   font-size: 0.82rem;
   color: var(--text-muted);
 }
-/*Mobile & Tablet Compatibility*/
+/* Mobile & Tablet Compatibility */
 @media (max-width: 860px) {
   .menu-toggle {
     display: inline-block;
@@ -402,16 +411,7 @@ body {
   .nav-links.active {
     display: flex;
   }
-}
-/*Translation button*/
-.lang-select {
-  background-color: var(--bg-surface);
-  color: var(--text-pure);
-  border: 1px solid var(--accent-cyan);
-  border-radius: 6px;
-  padding: 0.42rem 0.75rem;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 500;
-  cursor: pointer;
+  .language-switcher select {
+    max-width: 145px;
+  }
 }
