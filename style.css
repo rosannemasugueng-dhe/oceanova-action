@@ -163,6 +163,15 @@ body {
   box-shadow: 0 16px 36px rgba(2, 8, 18, 0.75);
   overflow: hidden;
   z-index: 1200;
+   display: none !important;
+}
+.sr-only-translate {
+  position: fixed;
+  left: -9999px;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 .lang-search-box {
   padding: 0.55rem;
