@@ -102,23 +102,34 @@ function googleTranslateElementInit() {
 function applyTranslation(langCode, langName) {
   const labelEl = document.getElementById('current-lang-label');
   if (labelEl) labelEl.textContent = langName.replace(' (Original)', '');
+
+  const baseSiteUrl = 'https://github.io';
   if (langCode === 'fr') {
     document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + window.location.hostname + ';';
-    window.location.reload();
+    if (window.location.hostname.includes('translate.goog')) {
+      window.location.href = baseSiteUrl;
+    } else {
+      window.location.reload();
+    }
     return;
   }
-  // 1. Attempts to activate the built-in engine on the page
+
+  // 1. If the integrated Google Translate engine is loaded on the page, activate it immediately
   const combo = document.querySelector('.goog-te-combo');
   if (combo) {
     combo.value = langCode;
     combo.dispatchEvent(new Event('change'));
     return;
   }
-// 2. else, set the official Google Translate cookie and reload the page
-  document.cookie = `googtrans=/fr/${langCode}; path=/;`;
-  document.cookie = `googtrans=/fr/${langCode}; path=/; domain=${window.location.hostname};`;
-  window.location.reload();
+
+  // 2. else, a guaranteed fallback to the official Google Translate translator
+  const targetUrl =
+    'https://google.com' +
+    encodeURIComponent(langCode) +
+    '&u=' +
+    encodeURIComponent(baseSiteUrl);
+  window.location.href = targetUrl;
 }
 document.addEventListener('DOMContentLoaded', () => {
   const menuToggle = document.getElementById('menu-toggle');
@@ -133,10 +144,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const listEl = document.getElementById('lang-list');
   const searchInput = document.getElementById('lang-search');
   const labelEl = document.getElementById('current-lang-label');
-  // Restore the name of the active language if already translated
+
+  // Restores the name of the active language
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlLang = urlParams.get('_x_tr_tl');
   const cookieMatch = document.cookie.match(/googtrans=\/fr\/([^;]+)/);
-  if (cookieMatch && labelEl) {
-    const found = LANGUAGES.find((l) => l.code === cookieMatch);
+  const activeCode = urlLang || (cookieMatch ? cookieMatch[1] : null);
+  if (activeCode && labelEl) {
+    const found = LANGUAGES.find((l) => l.code === activeCode);
     if (found) labelEl.textContent = found.name.replace(' (Original)', '');
   }
   const renderList = (filter = '') => {
