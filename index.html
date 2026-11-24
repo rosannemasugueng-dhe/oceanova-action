@@ -21,6 +21,21 @@
 </head>
 <body>
   <!-- Institutional Navigation Bar -->
+  <div class="top-utility-bar">
+    <div class="container utility-container">
+      <div class="lang-widget-wrapper" title="Changer la langue du site">
+        <svg class="globe-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+        <span id="current-lang-label" class="notranslate">Français</span>
+        <span class="chevron-icon" aria-hidden="true">▾</span>
+        <div id="google_translate_element"></div>
+      </div>
+    </div>
+  </div>
+  
   <header class="navbar">
     <div class="container nav-container">
       <a href="#accueil" class="brand">
@@ -38,25 +53,11 @@
         <a href="#direction">Direction</a>
       </nav>
       <div class="nav-actions">
-        <!-- 130+ Language Selector -->
-        <select id="language-switcher" class="lang-select" aria-label="Choisir la langue">
-          <option value="fr">Langue : Français</option>
-          <option value="en">English</option>
-          <option value="rw">Kinyarwanda</option>
-          <option value="sw">Kiswahili</option>
-          <option value="es">Español</option>
-          <option value="pt">Português</option>
-          <option value="ar">العربية</option>
-          <option value="zh-CN">中文 (简体)</option>
-          <option value="de">Deutsch</option>
-          <option value="hi">हिन्दी</option>
-          <option value="more">+ 130 Langues (Google)</option>
-        </select>
-        </div>
         <button class="menu-toggle" id="menu-toggle" aria-label="Ouvrir le menu">Menu</button>
       </div>
     </div>
   </header>
+
   <!-- Hero Section: The Digital Embassy -->
   <section id="accueil" class="hero">
     <div class="hero-glow"></div>
@@ -226,5 +227,6 @@
     </div>
   </footer>
   <script src="app.js"></script>
+  <script src="https://google.com"></script>
 </body>
 </html>
