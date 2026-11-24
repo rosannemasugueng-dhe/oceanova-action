@@ -2,7 +2,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const menuToggle = document.getElementById('menu-toggle');
   const navLinks = document.getElementById('nav-links');
-
   if (menuToggle && navLinks) {
     menuToggle.addEventListener('click', () => {
       navLinks.classList.toggle('active');
@@ -10,11 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 function translateSite(targetLang) {
-  if (!targetLang || targetLang === 'fr') return;
-
+  if (!targetLang) return;
   const baseSiteUrl = 'https://github.io';
-
-  if (targetLang === 'original') {
+  if (targetLang === 'fr' || targetLang === 'original') {
     window.location.href = baseSiteUrl;
     return;
   }
