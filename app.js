@@ -2,30 +2,39 @@
 document.addEventListener('DOMContentLoaded', () => {
   const menuToggle = document.getElementById('menu-toggle');
   const navLinks = document.getElementById('nav-links');
+
   if (menuToggle && navLinks) {
     menuToggle.addEventListener('click', () => {
       navLinks.classList.toggle('active');
     });
   }
-});
-function translateSite(targetLang) {
-  if (!targetLang) return;
-  const baseSiteUrl = 'https://github.io';
-  if (targetLang === 'fr' || targetLang === 'original') {
-    window.location.href = baseSiteUrl;
-    return;
-  }
-  let sourceUrl = window.location.href;
-  if (sourceUrl.includes('translate.goog')) {
-    const urlParams = new URLSearchParams(window.location.search);
-    sourceUrl = urlParams.get('_x_tr_url') || baseSiteUrl;
-  }
-  // Direct redirect to the official Google Translate engine (130+ languages)
-  const googleTranslateUrl =
-    'https://google.com' +
-    encodeURIComponent(targetLang) +
-    '&u=' +
-    encodeURIComponent(sourceUrl);
+  // Synchronizes the displayed label with the active language from the Google Translate cookie
+  const syncLanguageLabel = () => {
+    const labelEl = document.getElementById('current-lang-label');
+    if (!labelEl) return;
+    const match = document.cookie.match(/googtrans=\/fr\/([^;]+)/);
+    const activeCode = match ? match[1] : 'fr';
+    const select = document.querySelector('.goog-te-combo');
+    if (select) {
+      for (const opt of select.options) {
+        if (opt.value === activeCode) {
+          labelEl.textContent = opt.text.replace(/^Sélectionner une langue$/i, 'Français');
+          return;
+        }
+      }
+    }
+    if (activeCode === 'fr') labelEl.textContent = 'Français';
+  };
 
-  window.location.href = googleTranslateUrl;
+  setInterval(syncLanguageLabel, 800);
+});
+// Direct redirect to the official Google Translate engine (130+ languages)
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement(
+    {
+      pageLanguage: 'fr',
+      autoDisplay: false
+    },
+    'google_translate_element'
+  );
 }
