@@ -23,18 +23,27 @@
   <!-- Institutional Navigation Bar -->
   <div class="top-utility-bar">
     <div class="container utility-container">
-      <div class="lang-widget-wrapper" title="Changer la langue du site">
-        <svg class="globe-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="2" y1="12" x2="22" y2="12"></line>
-          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-        </svg>
-        <span id="current-lang-label" class="notranslate">Français</span>
-        <span class="chevron-icon" aria-hidden="true">▾</span>
-        <div id="google_translate_element"></div>
+      <div class="lang-dropdown" id="lang-dropdown">
+        <button type="button" class="lang-trigger notranslate" id="lang-trigger" aria-expanded="false" aria-haspopup="listbox">
+          <svg class="globe-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span id="current-lang-label">Français</span>
+          <span class="chevron-icon" aria-hidden="true">▾</span>
+        </button>
+
+        <div class="lang-menu notranslate" id="lang-menu" role="listbox" hidden>
+          <div class="lang-search-box">
+            <input type="text" id="lang-search" placeholder="Rechercher une langue..." aria-label="Rechercher une langue" />
+          </div>
+          <ul class="lang-list" id="lang-list"></ul>
+        </div>
       </div>
     </div>
   </div>
+  <div id="google_translate_element" style="display:none;"></div>
   
   <header class="navbar">
     <div class="container nav-container">
