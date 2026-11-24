@@ -107,43 +107,112 @@ body {
   cursor: pointer;
 }
 /* Multilingual Language Switcher (130+ Languages) */
+/* Top Utility Bar (UNICEF-Style Interactive Language Dropdown) */
 .top-utility-bar {
+  position: relative;
+  z-index: 1100;
   background-color: #040d1a;
   border-bottom: 1px solid rgba(38, 183, 205, 0.14);
-  padding: 0.32rem 0;
-  font-size: 0.8rem;
+  padding: 0.35rem 0;
+  font-size: 0.82rem;
 }
 .utility-container {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
-.lang-widget-wrapper {
+.lang-dropdown {
   position: relative;
+}
+.lang-trigger {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.42rem;
+  background: transparent;
+  border: 1px solid transparent;
   color: var(--text-muted);
-  padding: 0.2rem 0.55rem;
-  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
   cursor: pointer;
-  transition: color 0.2s ease, background 0.2s ease;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 }
-.lang-widget-wrapper:hover {
+.lang-trigger:hover,
+.lang-trigger[aria-expanded="true"] {
   color: var(--accent-cyan);
   background: rgba(38, 183, 205, 0.08);
+  border-color: var(--border-subtle);
 }
 .globe-icon {
   color: var(--accent-cyan);
   flex-shrink: 0;
 }
-#current-lang-label {
-  font-weight: 500;
-  letter-spacing: 0.2px;
-}
 .chevron-icon {
-  font-size: 0.7rem;
-  opacity: 0.85;
+  font-size: 0.72rem;
+}
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 240px;
+  background: var(--bg-surface);
+  border: 1px solid var(--accent-cyan);
+  border-radius: 10px;
+  box-shadow: 0 16px 36px rgba(2, 8, 18, 0.75);
+  overflow: hidden;
+  z-index: 1200;
+}
+.lang-search-box {
+  padding: 0.55rem;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-abyss);
+}
+.lang-search-box input {
+  width: 100%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  color: var(--text-pure);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  outline: none;
+}
+.lang-search-box input:focus {
+  border-color: var(--accent-cyan);
+}
+.lang-list {
+  list-style: none;
+  max-height: 270px;
+  overflow-y: auto;
+  padding: 0.3rem 0;
+}
+.lang-option {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: var(--text-pure);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.83rem;
+  padding: 0.48rem 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.lang-option:hover {
+  background: rgba(38, 183, 205, 0.16);
+  color: var(--accent-cyan);
+}
+/* Hides the automatic Google banner */
+.goog-te-banner-frame.skiptranslate,
+iframe.skiptranslate,
+.skiptranslate {
+  display: none !important;
+}
+body {
+  top: 0 !important;
 }
 /* Places the actual Google Translate drop-down menu in the foreground */
 #google_translate_element {
