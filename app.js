@@ -128,22 +128,6 @@ function applyTranslation(langCode, langName) {
     encodeURIComponent(baseSiteUrl);
   window.location.href = targetUrl;
 }
-  // 1. If the integrated Google Translate engine is loaded on the page, activate it immediately
-  const combo = document.querySelector('.goog-te-combo');
-  if (combo) {
-    combo.value = langCode;
-    combo.dispatchEvent(new Event('change'));
-    return;
-  }
-
-  // 2. else, a guaranteed fallback to the official Google Translate translator
-  const targetUrl =
-    'https://google.com' +
-    encodeURIComponent(langCode) +
-    '&u=' +
-    encodeURIComponent(baseSiteUrl);
-  window.location.href = targetUrl;
-}
 document.addEventListener('DOMContentLoaded', () => {
   const menuToggle = document.getElementById('menu-toggle');
   const navLinks = document.getElementById('nav-links');
