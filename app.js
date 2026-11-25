@@ -102,8 +102,7 @@ function googleTranslateElementInit() {
 function applyTranslation(langCode, langName) {
   const labelEl = document.getElementById('current-lang-label');
   if (labelEl) labelEl.textContent = langName.replace(' (Original)', '');
-
-  const baseSiteUrl = 'https://github.io';
+  const baseSiteUrl = 'https://rosannemasugueng-dhe.github.io/oceanova-action/';
   if (langCode === 'fr') {
     document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + window.location.hostname + ';';
@@ -114,7 +113,21 @@ function applyTranslation(langCode, langName) {
     }
     return;
   }
-
+  const combo = document.querySelector('.goog-te-combo');
+  if (combo) {
+    combo.value = langCode;
+    if (combo.value === langCode) {
+      combo.dispatchEvent(new Event('change'));
+      return;
+    }
+  }
+  const targetUrl =
+    'https://translate.google.com/translate?sl=fr&tl=' +
+    encodeURIComponent(langCode) +
+    '&u=' +
+    encodeURIComponent(baseSiteUrl);
+  window.location.href = targetUrl;
+}
   // 1. If the integrated Google Translate engine is loaded on the page, activate it immediately
   const combo = document.querySelector('.goog-te-combo');
   if (combo) {
