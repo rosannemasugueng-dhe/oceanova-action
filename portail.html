@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portail Clinique &amp; Ministères | OceaNova Action Inc.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/jpeg" href="logo.jpeg" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .portal-bar { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:0.8rem 0; flex-wrap:wrap; }
+    .portal-bar h1 { font-family:'Playfair Display', serif; font-size:1.2rem; }
+    .portal-actions { display:flex; gap:0.8rem; flex-wrap:wrap; }
+    .portal-actions .btn { padding:0.5rem 1rem; font-size:0.85rem; }
+    .portal-frame-wrap { width:96%; max-width:1400px; margin:0 auto 2rem; border:1px solid var(--border-subtle); border-radius:12px; overflow:hidden; background:var(--bg-surface); }
+    #portal-frame { display:block; width:100%; height:calc(100vh - 190px); min-height:640px; border:0; }
+  </style>
+</head>
+<body>
+  <div class="top-utility-bar">
+    <div class="container utility-container">
+      <div class="lang-dropdown" id="lang-dropdown">
+        <button type="button" class="lang-trigger notranslate" id="lang-trigger" aria-expanded="false" aria-haspopup="listbox">
+          <svg class="globe-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span id="current-lang-label">Français</span>
+          <span class="chevron-icon" aria-hidden="true">▾</span>
+        </button>
+        <div class="lang-menu notranslate" id="lang-menu" role="listbox" hidden>
+          <div class="lang-search-box">
+            <input type="text" id="lang-search" placeholder="Rechercher une langue..." aria-label="Rechercher une langue" />
+          </div>
+          <ul class="lang-list" id="lang-list"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="google_translate_element" class="sr-only-translate"></div>
+
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <img src="logo.jpeg" alt="Logo officiel OceaNova Action Inc." class="brand-logo" />
+        <div class="brand-text">
+          <span class="brand-name">OceaNova</span>
+          <span class="brand-sub">ACTION INC.</span>
+        </div>
+      </a>
+      <div class="nav-actions">
+        <a href="index.html" class="btn btn-secondary" style="padding:0.5rem 1rem;font-size:0.85rem;">← Site officiel</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container portal-bar">
+      <h1>Portail Clinique &amp; Ministères — Tableau de Bord</h1>
+      <div class="portal-actions">
+        <a id="open-direct" class="btn btn-secondary" href="https://oceanova-action-mvp.streamlit.app/" target="_blank" rel="noopener noreferrer">Ouvrir en plein écran ↗</a>
+      </div>
+    </div>
+    <div class="portal-frame-wrap">
+      <iframe id="portal-frame" title="Tableau de bord OceaNova Action" loading="lazy" allow="geolocation"></iframe>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script>
+    const STREAMLIT_URL = 'https://oceanova-action-mvp.streamlit.app/';
+    function currentLangCode() {
+      const m = document.cookie.match(/googtrans=\/fr\/([^;]+)/);
+      return m ? m[1] : 'fr';
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const code = encodeURIComponent(currentLangCode());
+      document.getElementById('portal-frame').src = STREAMLIT_URL + '?embed=true&lang=' + code;
+      document.getElementById('open-direct').href = STREAMLIT_URL + '?lang=' + code;
+    });
+  </script>
+</body>
+</html>
