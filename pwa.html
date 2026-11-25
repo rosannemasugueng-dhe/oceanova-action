@@ -1,1 +1,490 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OceaNova Terrain | Application Universelle & Vocale (Afrique Subsaharienne)</title>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#061426" />
+  <link rel="icon" type="image/jpeg" href="logo.jpeg" />
+  <style>
+    :root {
+      --bg-abyss: #061426;
+      --bg-surface: #0b2545;
+      --bg-card: #0e2d54;
+      --accent-cyan: #26b7cd;
+      --text-pure: #ffffff;
+      --text-muted: #cbd5e1;
+      --border-subtle: rgba(38, 183, 205, 0.25);
+      --lvl-1: #10b981;
+      --lvl-2: #0ea5e9;
+      --lvl-3: #eab308;
+      --lvl-4: #f97316;
+      --lvl-5: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-abyss);
+      color: var(--text-pure);
+      line-height: 1.5;
+      padding-bottom: 3rem;
+    }
+    .topbar {
+      background: #040d1a;
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      color: var(--text-pure);
+    }
+    .brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--accent-cyan);
+    }
+    .brand-title { font-weight: 700; font-size: 1rem; }
+    .brand-sub { display: block; font-size: 0.68rem; color: var(--accent-cyan); letter-spacing: 1px; }
+    .status-pill {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid #10b981;
+      color: #6ee7b7;
+      font-weight: 600;
+    }
+    .status-pill.offline {
+      background: rgba(234, 179, 8, 0.15);
+      border-color: #eab308;
+      color: #fde047;
+    }
+    .container {
+      width: 94%;
+      max-width: 680px;
+      margin: 1.2rem auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 1.25rem;
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.9rem;
+    }
+    .card h2 {
+      font-size: 1.05rem;
+      color: var(--accent-cyan);
+    }
+    .audio-btn {
+      background: rgba(38, 183, 205, 0.16);
+      border: 1px solid var(--accent-cyan);
+      color: var(--text-pure);
+      border-radius: 8px;
+      padding: 0.45rem 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .audio-btn:active { transform: scale(0.97); }
+    label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+      font-weight: 600;
+    }
+    select, input {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 10px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-abyss);
+      color: var(--text-pure);
+      font-size: 1rem;
+      margin-bottom: 0.85rem;
+    }
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 0.8rem;
+    }
+    .color-btn {
+      border: 2px solid transparent;
+      border-radius: 12px;
+      padding: 0.9rem 0.25rem;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .color-btn.selected {
+      border-color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35);
+    }
+    .c1 { background: var(--lvl-1); }
+    .c2 { background: var(--lvl-2); }
+    .c3 { background: var(--lvl-3); color: #061426; }
+    .c4 { background: var(--lvl-4); }
+    .c5 { background: var(--lvl-5); }
+    .payout-box {
+      background: var(--bg-abyss);
+      border: 1px solid var(--accent-cyan);
+      border-radius: 10px;
+      padding: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.9rem;
+    }
+    .payout-amount {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--accent-cyan);
+    }
+    .btn-main {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #26b7cd, #135898);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-gps {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 10px;
+      border: 1px solid var(--accent-cyan);
+      background: rgba(38, 183, 205, 0.1);
+      color: var(--text-pure);
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 0.85rem;
+    }
+    .log-item {
+      background: var(--bg-abyss);
+      border-left: 4px solid var(--accent-cyan);
+      padding: 0.75rem;
+      border-radius: 8px;
+      margin-top: 0.6rem;
+      font-size: 0.85rem;
+    }
+    .back-link {
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+    .back-link a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a href="index.html" class="brand">
+      <img src="logo.jpeg" alt="OceaNova Action" />
+      <div>
+        <span class="brand-title">OceaNova Terrain</span>
+        <span class="brand-sub">PWA UNIVERSELLE • 48 PAYS</span>
+      </div>
+    </a>
+    <span id="net-status" class="status-pill">En ligne</span>
+  </header>
 
+  <main class="container">
+    <!-- 1. Langue & Guide Vocal -->
+    <section class="card">
+      <div class="card-header">
+        <h2 id="t-lang-title">1. Langue &amp; Guide Vocal</h2>
+        <button type="button" class="audio-btn" onclick="speakGuide('welcome')">🔊 Écouter</button>
+      </div>
+      <label for="voice-lang">Choisir votre langue / Choose Language</label>
+      <select id="voice-lang" onchange="updateLanguageUI()">
+        <option value="fr-FR">Français</option>
+        <option value="en-US">English</option>
+        <option value="rw-RW">Ikinyarwanda (Rwanda)</option>
+        <option value="sw-KE">Kiswahili (Afrique de l'Est)</option>
+        <option value="ln-CD">Lingála (Afrique Centrale)</option>
+        <option value="ha-NG">Hausa (Afrique de l'Ouest)</option>
+        <option value="yo-NG">Yorùbá</option>
+        <option value="ig-NG">Igbo</option>
+        <option value="am-ET">አማርኛ (Amharique)</option>
+        <option value="zu-ZA">isiZulu</option>
+        <option value="wo-SN">Wolof</option>
+        <option value="bm-ML">Bamanankan (Bambara)</option>
+        <option value="dua-CM">Duala (Cameroun)</option>
+        <option value="ewo-CM">Ewondo (Cameroun)</option>
+        <option value="pt-PT">Português (PALOP)</option>
+        <option value="ar-SA">العربية (Arabe)</option>
+      </select>
+
+      <label for="country-select">Pays d'intervention (48 Pays d'Afrique Subsaharienne)</label>
+      <select id="country-select"></select>
+    </section>
+
+    <!-- 2. Signalement Visuel par 5 Codes Couleurs -->
+    <section class="card">
+      <div class="card-header">
+        <h2 id="t-alert-title">2. État Visuel du Cours d'Eau</h2>
+        <button type="button" class="audio-btn" onclick="speakGuide('colors')">🔊 Écouter</button>
+      </div>
+      <div class="color-grid" role="radiogroup" aria-label="Niveau de pollution visuelle">
+        <button type="button" class="color-btn c1 selected" onclick="selectLevel(1, 'Eau propre / Sûre', this)">
+          <span>1</span><span>Vert</span>
+        </button>
+        <button type="button" class="color-btn c2" onclick="selectLevel(2, 'Surveillance faible', this)">
+          <span>2</span><span>Bleu</span>
+        </button>
+        <button type="button" class="color-btn c3" onclick="selectLevel(3, 'Vigilance plastique', this)">
+          <span>3</span><span>Jaune</span>
+        </button>
+        <button type="button" class="color-btn c4" onclick="selectLevel(4, 'Alerte élevée', this)">
+          <span>4</span><span>Orange</span>
+        </button>
+        <button type="button" class="color-btn c5" onclick="selectLevel(5, 'Danger critique', this)">
+          <span>5</span><span>Rouge</span>
+        </button>
+      </div>
+      <p id="selected-level-text" style="font-size:0.88rem; color:#cbd5e1;">Niveau sélectionné : 1 — Eau propre / Sûre</p>
+    </section>
+
+    <!-- 3. Collecte Textile-to-Cash & Mobile Money -->
+    <section class="card">
+      <div class="card-header">
+        <h2 id="t-collect-title">3. Enregistrer une Collecte (0,25 USD/kg)</h2>
+        <button type="button" class="audio-btn" onclick="speakGuide('collect')">🔊 Écouter</button>
+      </div>
+
+      <button type="button" class="btn-gps" onclick="captureGPS()">📍 Capturer ma position GPS (Rivière / Bassin)</button>
+      <p id="gps-display" style="font-size:0.82rem; color:#26b7cd; margin-bottom:0.8rem;">Position GPS : En attente</p>
+
+      <label for="river-name">Nom du cours d'eau / Estuaire / Ruisseau</label>
+      <input type="text" id="river-name" placeholder="Ex: Nyabarongo, Wouri, Sanaga, Congo, Niger..." />
+
+      <label for="weight-kg">Poids de plastique PET collecté (en kg)</label>
+      <input type="number" id="weight-kg" min="0" step="0.5" placeholder="Ex: 20" oninput="calculatePayout()" />
+
+      <div class="payout-box">
+        <div>
+                    <span style="font-size:0.82rem; color:#cbd5e1;">Paiement Mobile Money estimé</span><br />
+          <strong style="font-size:0.78rem; color:#26b7cd;">Tarif équitable : 0,25 USD / kg</strong>
+        </div>
+        <div class="payout-amount" id="payout-usd">$0.00</div>
+      </div>
+
+      <button type="button" class="btn-main" onclick="saveFieldRecord()">✅ Enregistrer (Mode Hors-Ligne Inclus)</button>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <h2>4. Collectes Sauvegardées sur ce Téléphone</h2>
+        <button type="button" class="audio-btn" onclick="clearLogs()">Effacer</button>
+      </div>
+      <div id="logs-container">
+        <p style="font-size:0.85rem; color:#cbd5e1;">Aucune collecte enregistrée pour le moment.</p>
+      </div>
+    </section>
+
+    <div class="back-link">
+      <a href="index.html">← Retour au Site Officiel OceaNova Action Inc.</a>
+    </div>
+  </main>
+
+  <script>
+    const SSA_COUNTRIES = [
+      "Afrique du Sud", "Angola", "Bénin", "Botswana", "Burkina Faso", "Burundi",
+      "Cabo Verde", "Cameroun", "Comores", "Congo (Brazzaville)", "Côte d'Ivoire",
+      "Djibouti", "Érythrée", "Eswatini", "Éthiopie", "Gabon", "Gambie", "Ghana",
+      "Guinée", "Guinée-Bissau", "Guinée équatoriale", "Kenya", "Lesotho", "Liberia",
+      "Madagascar", "Malawi", "Mali", "Maurice", "Mauritanie", "Mozambique", "Namibie",
+      "Niger", "Nigeria", "Ouganda", "République centrafricaine",
+      "République démocratique du Congo", "Rwanda", "Sao Tomé-et-Principe", "Sénégal",
+      "Seychelles", "Sierra Leone", "Somalie", "Soudan", "Soudan du Sud", "Tanzanie",
+      "Tchad", "Togo", "Zambie", "Zimbabwe"
+    ];
+
+    const VOICE_SCRIPTS = {
+      fr: {
+        welcome: "Bienvenue sur OceaNova Terrain. Choisissez votre langue et votre pays, puis touchez une couleur pour signaler l'état de la rivière.",
+        colors: "Touchez Vert si l'eau est propre, Jaune s'il y a du plastique, ou Rouge si la pollution est très dangereuse.",
+        collect: "Appuyez sur le bouton GPS, entrez le poids de plastique en kilogrammes, puis validez pour calculer votre paiement Mobile Money."
+      },
+      en: {
+        welcome: "Welcome to OceaNova Field App. Select your language and country, then tap a color to report river conditions.",
+        colors: "Tap Green if water is clean, Yellow for plastic waste, or Red for critical pollution danger.",
+        collect: "Tap the GPS button, enter plastic weight in kilograms, and save to calculate your Mobile Money payout."
+      },
+      rw: {
+        welcome: "Murakaza neza kuri OceaNova. Hitamo ururimi n'igihugu, hanyuma ukande ibara rigaragaza uko umugezi umeze.",
+        colors: "Kanda Icyatsi niba amazi asukuye, Umuhondo niba harimo pulasitike, cyangwa Umutuku niba hari akaga gakomeye.",
+        collect: "Kanda ahanditse GPS, wandike ibiro bya pulasitike wakusanyije, hanyuma wemeze kugira ngo ubone amafaranga yawe ya Mobile Money."
+      },
+      sw: {
+        welcome: "Karibu OceaNova. Chagua lugha yako na nchi yako, kisha gusa rangi kuonyesha hali ya mto.",
+        colors: "Gusa Kijani kama maji ni safi, Njano kama kuna plastiki, au Nyekundu kama kuna hatari kubwa.",
+        collect: "Bonyeza kitufe cha GPS, weka uzito wa plastiki kwa kilo, kisha hifadhi ili kuona malipo yako ya Mobile Money."
+      }
+    };
+
+    let selectedLevel = 1;
+    let selectedLevelLabel = "Eau propre / Sûre";
+    let currentCoords = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const countrySelect = document.getElementById("country-select");
+      SSA_COUNTRIES.forEach((c) => {
+        const opt = document.createElement("option");
+        opt.value = c;
+        opt.textContent = c;
+        if (c === "Rwanda") opt.selected = true;
+        countrySelect.appendChild(opt);
+      });
+
+      updateNetworkStatus();
+      window.addEventListener("online", updateNetworkStatus);
+      window.addEventListener("offline", updateNetworkStatus);
+      renderLogs();
+
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
+      }
+    });
+
+    function updateNetworkStatus() {
+      const pill = document.getElementById("net-status");
+      if (navigator.onLine) {
+        pill.textContent = "En ligne";
+        pill.classList.remove("offline");
+      } else {
+        pill.textContent = "Hors-ligne (Sauvegarde locale active)";
+        pill.classList.add("offline");
+      }
+    }
+
+    function speakGuide(section) {
+      if (!("speechSynthesis" in window)) {
+        alert("La synthèse vocale n'est pas supportée sur ce navigateur.");
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const langFull = document.getElementById("voice-lang").value;
+      const shortLang = langFull.split("-")[0];
+      const pack = VOICE_SCRIPTS[shortLang] || VOICE_SCRIPTS.fr;
+      const utterance = new SpeechSynthesisUtterance(pack[section]);
+      utterance.lang = langFull;
+      utterance.rate = 0.95;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function selectLevel(level, label, btn) {
+      selectedLevel = level;
+      selectedLevelLabel = label;
+      document.querySelectorAll(".color-btn").forEach((b) => b.classList.remove("selected"));
+      btn.classList.add("selected");
+      document.getElementById("selected-level-text").textContent = `Niveau sélectionné : ${level} — ${label}`;
+    }
+
+    function captureGPS() {
+      const display = document.getElementById("gps-display");
+      if (!navigator.geolocation) {
+        display.textContent = "GPS non disponible sur cet appareil.";
+        return;
+      }
+      display.textContent = "Recherche des satellites GPS...";
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          currentCoords = `${pos.coords.latitude.toFixed(5)}, ${pos.coords.longitude.toFixed(5)}`;
+          display.textContent = `Position GPS verrouillée : ${currentCoords}`;
+        },
+        () => {
+          display.textContent = "Autorisation GPS refusée ou signal faible (saisie manuelle possible).";
+        }
+      );
+    }
+
+    function calculatePayout() {
+      const kg = parseFloat(document.getElementById("weight-kg").value) || 0;
+      const usd = (kg * 0.25).toFixed(2);
+      document.getElementById("payout-usd").textContent = `$${usd}`;
+    }
+
+    function saveFieldRecord() {
+      const country = document.getElementById("country-select").value;
+      const river = document.getElementById("river-name").value.trim() || "Cours d'eau non précisé";
+      const kg = parseFloat(document.getElementById("weight-kg").value) || 0;
+      const usd = (kg * 0.25).toFixed(2);
+
+      const record = {
+        id: Date.now(),
+        date: new Date().toLocaleString(),
+        country,
+        river,
+        level: selectedLevel,
+        levelLabel: selectedLevelLabel,
+        kg,
+        usd,
+        gps: currentCoords || "Non capturé"
+      };
+
+      const existing = JSON.parse(localStorage.getItem("oceanova_field_logs") || "[]");
+      existing.unshift(record);
+      localStorage.setItem("oceanova_field_logs", JSON.stringify(existing));
+      renderLogs();
+    }
+
+    function renderLogs() {
+      const container = document.getElementById("logs-container");
+      const logs = JSON.parse(localStorage.getItem("oceanova_field_logs") || "[]");
+      if (!logs.length) {
+        container.innerHTML = `<p style="font-size:0.85rem; color:#cbd5e1;">Aucune collecte enregistrée pour le moment.</p>`;
+        return;
+      }
+      container.innerHTML = logs.map((item) => `
+        <div class="log-item">
+          <strong>${item.country} — ${item.river}</strong><br />
+          Alerte : Niveau ${item.level} (${item.levelLabel}) | Poids : <strong>${item.kg} kg</strong> (<strong>$${item.usd}</strong>)<br />
+          <span style="color:#94a3b8; font-size:0.78rem;">GPS : ${item.gps} • ${item.date}</span>
+        </div>
+      `).join("");
+    }
+
+    function clearLogs() {
+      localStorage.removeItem("oceanova_field_logs");
+      renderLogs();
+    }
+  </script>
+</body>
+</html>
